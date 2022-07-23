@@ -13,9 +13,10 @@ class SendAgent:
         self.msg['From'] = self.user_email
         self.server = smtplib.SMTP(self.server_smtp_address,self.port)
 
-    def send_mail(self, recipient_email, subject, message_body, ):
+    def send_mail(self, recipient_email, subject, message_body, recipient_cc_email):
         self.msg['Subject'] = subject
         self.msg['To'] = recipient_email
+        self.msg['Cc'] = recipient_cc_email
         self.server.starttls()
         self.server.login(self.user_email,self.user_email_password)
         body = message_body
